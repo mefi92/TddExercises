@@ -2,7 +2,7 @@
 {
     public class PrimeNumberDetector
     {
-        public bool IsPrime(int number)
+        public bool IsItPrimeNumber(int number)
         {
             return true;
         }

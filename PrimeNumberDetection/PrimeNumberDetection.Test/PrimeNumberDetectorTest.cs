@@ -4,17 +4,18 @@ namespace PrimeNumberDetection.Test
     public class PrimeNumberDetectorTest
     {
         [TestMethod]
-        public void IsPrime_3_ReturnsTrue()
+        public void IsDivisibleByTwo()
         {
             PrimeNumberDetector primeNumberDetector = new PrimeNumberDetector();
-            Assert.IsTrue(primeNumberDetector.IsPrime(3));
+            Assert.IsFalse(primeNumberDetector.IsItPrimeNumber(2));
         }
 
         [TestMethod]
-        public void IsPrime_4_ReturnsFalse()
+        public void IsDivisibleByThree()
         {
             PrimeNumberDetector primeNumberDetector = new PrimeNumberDetector();
-            Assert.IsFalse(primeNumberDetector.IsPrime(4));
+            Assert.IsTrue(primeNumberDetector.IsItPrimeNumber(3));
         }
+
     }
 }
