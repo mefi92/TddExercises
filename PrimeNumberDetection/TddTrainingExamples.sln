@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeNumberDetection", "PrimeNumberDetection\PrimeNumberDetection.csproj", "{EF11CE79-B06F-482D-93BA-20F406E21C83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeNumberDetection", "PrimeNumberDetection\PrimeNumberDetection.csproj", "{EF11CE79-B06F-482D-93BA-20F406E21C83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeNumberDetection.Test", "PrimeNumberDetection.Test\PrimeNumberDetection.Test.csproj", "{E7930BB1-666E-42C1-9E12-45B3C507BCF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeNumberDetection.Test", "PrimeNumberDetection.Test\PrimeNumberDetection.Test.csproj", "{E7930BB1-666E-42C1-9E12-45B3C507BCF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankOcr", "BankOcr\BankOcr.csproj", "{47280F3E-26C9-4F6B-8FB4-C90A403F0BCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankOcr.Test", "BankOcr.Test\BankOcr.Test.csproj", "{84FA9109-CE4A-41AA-B305-78C8D5152717}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{E7930BB1-666E-42C1-9E12-45B3C507BCF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7930BB1-666E-42C1-9E12-45B3C507BCF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7930BB1-666E-42C1-9E12-45B3C507BCF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47280F3E-26C9-4F6B-8FB4-C90A403F0BCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47280F3E-26C9-4F6B-8FB4-C90A403F0BCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47280F3E-26C9-4F6B-8FB4-C90A403F0BCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47280F3E-26C9-4F6B-8FB4-C90A403F0BCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84FA9109-CE4A-41AA-B305-78C8D5152717}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84FA9109-CE4A-41AA-B305-78C8D5152717}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84FA9109-CE4A-41AA-B305-78C8D5152717}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84FA9109-CE4A-41AA-B305-78C8D5152717}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
