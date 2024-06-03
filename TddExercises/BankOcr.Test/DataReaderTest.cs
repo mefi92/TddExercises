@@ -3,34 +3,41 @@ namespace BankOcr.Test
     [TestClass]
     public class DataReaderTest
     {
-        public string[,] validOnlyOne = {
+        public string[,] validOnlyOnes = {
             {"                           "},
             {"  |  |  |  |  |  |  |  |  |"},
             {"  |  |  |  |  |  |  |  |  |"},
             {"                           "}
         };
 
-        public string[,] validOnlyTwo = {
+        public string[,] validOnlyTwos = {
             {" _  _  _  _  _  _  _  _  _ "},
             {" _| _| _| _| _| _| _| _| _|"},
             {"|_ |_ |_ |_ |_ |_ |_ |_ |_ "},
             {"                           "}
         };
 
-        public string[,] validOnlyThree = {
+        public string[,] validOnlyThrees = {
             {" _  _  _  _  _  _  _  _  _ "},
             {" _| _| _| _| _| _| _| _| _|"},
             {" _| _| _| _| _| _| _| _| _|"},
             {"                           "}
         };
 
-        public string[,] threeArrays = {            
+        public string[,] validOnlyFours = {
+            {"                           "},
+            {"|_||_||_||_||_||_||_||_||_|"},
+            {"  |  |  |  |  |  |  |  |  |"},
+            {"                           "}
+        };
+
+        public string[,] threeRowsInput = {            
             {"  |  |  |  |  |  |  |  |  |"},
             {"  |  |  |  |  |  |  |  |  |"},
             {"                           "}
         };
 
-        public string[,] fiveArrays = {
+        public string[,] fiveRowsInput = {
             {"                           "},
             {"  |  |  |  |  |  |  |  |  |"},
             {"  |  |  |  |  |  |  |  |  |"},
@@ -79,7 +86,7 @@ namespace BankOcr.Test
             string expected = "111111111";
 
             DataReader reader = new DataReader();
-            string output = reader.ReadNumber(validOnlyOne);
+            string output = reader.ReadNumber(validOnlyOnes);
 
             Assert.AreEqual(expected, output);
         }
@@ -90,7 +97,7 @@ namespace BankOcr.Test
             string expected = "222222222";
 
             DataReader reader = new DataReader();
-            string output = reader.ReadNumber(validOnlyTwo);
+            string output = reader.ReadNumber(validOnlyTwos);
 
             Assert.AreEqual(expected, output);
         }
@@ -101,11 +108,21 @@ namespace BankOcr.Test
             string expected = "333333333";
 
             DataReader reader = new DataReader();
-            string output = reader.ReadNumber(validOnlyThree);
+            string output = reader.ReadNumber(validOnlyThrees);
 
             Assert.AreEqual(expected, output);
         }
 
+        [TestMethod]
+        public void ValidateInput_OnlyFours_Returns4x9()
+        {
+            string expected = "444444444";
+
+            DataReader reader = new DataReader();
+            string output = reader.ReadNumber(validOnlyFours);
+
+            Assert.AreEqual(expected, output);
+        }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -136,7 +153,7 @@ namespace BankOcr.Test
         public void ValidateInput_ThreeLines_ReturnsException()
         {
             DataReader reader = new DataReader();
-            reader.ReadNumber(threeArrays);
+            reader.ReadNumber(threeRowsInput);
         }
 
         [TestMethod]
@@ -144,7 +161,7 @@ namespace BankOcr.Test
         public void ValidateInput_FiveLines_ReturnsException()
         {
             DataReader reader = new DataReader();
-            reader.ReadNumber(fiveArrays);
+            reader.ReadNumber(fiveRowsInput);
         }
 
         [TestMethod]
