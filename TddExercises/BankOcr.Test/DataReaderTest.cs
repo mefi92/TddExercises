@@ -10,6 +10,13 @@ namespace BankOcr.Test
             {"                           "}
         };
 
+        public string[,] validOnlyTwo = {
+            {" _  _  _  _  _  _  _  _  _ "},
+            {" _| _| _| _| _| _| _| _| _|"},
+            {"|_ |_ |_ |_ |_ |_ |_ |_ |_ "},
+            {"                           "}
+        };
+
         public string[,] threeArrays = {            
             {"  |  |  |  |  |  |  |  |  |"},
             {"  |  |  |  |  |  |  |  |  |"},
@@ -76,7 +83,7 @@ namespace BankOcr.Test
             string expected = "222222222";
 
             DataReader reader = new DataReader();
-            string output = reader.ReadNumber(validOnlyOne);
+            string output = reader.ReadNumber(validOnlyTwo);
 
             Assert.AreEqual(expected, output);
         }

@@ -17,6 +17,13 @@ namespace BankOcr
             {"   "}
         };
 
+        private readonly string[,] two = {
+            {" _ "},
+            {" _|"},
+            {"|_ "},
+            {"   "}
+        };
+
         public string ReadNumber(string[,] text)
         {
             ValidateInput(text);
@@ -25,22 +32,39 @@ namespace BankOcr
 
             for (int digit = 0; digit < maxDigitNums; digit++)
             {
-                for (int row = 0; row < numOfRows; row++)
-                {
-                    int actDigit = digit * lengthOfDigit;
-                    if (text[row, 0].Substring(actDigit, lengthOfDigit) != one[row, 0])
-                    {
-                        break;
-                    }
-
-                }
-
-                outputDigits.Append('1');
+                string recognizedDigit = RecognizeDigit(text, outputDigits, digit);
+                outputDigits.Append(recognizedDigit);
             }
 
             return outputDigits.ToString();
         }
 
+        private string RecognizeDigit(string[,] text, StringBuilder outputDigits, int digit)
+        {
+            if (IsMatch(text, digit, one))
+            {
+                return "1";
+            }
+            if (IsMatch(text, digit, two))
+            {
+                return "2";
+            }
+            return "?";
+
+        }
+
+        private bool IsMatch(string[,] text, int digit, string[,] digitPattern)
+        {
+            for (int row = 0; row < numOfRows; row++)
+            {
+                int actDigit = digit * lengthOfDigit;
+                if (text[row, 0].Substring(actDigit, lengthOfDigit) != digitPattern[row, 0])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
         private static void ValidateInput(string[,] text)
         {
@@ -100,4 +124,6 @@ namespace BankOcr
             }
         }
     }
-}
+
+        
+    }
