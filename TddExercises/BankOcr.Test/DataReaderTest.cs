@@ -17,6 +17,13 @@ namespace BankOcr.Test
             {"                           "}
         };
 
+        public string[,] validOnlyThree = {
+            {" _  _  _  _  _  _  _  _  _ "},
+            {" _| _| _| _| _| _| _| _| _|"},
+            {" _| _| _| _| _| _| _| _| _|"},
+            {"                           "}
+        };
+
         public string[,] threeArrays = {            
             {"  |  |  |  |  |  |  |  |  |"},
             {"  |  |  |  |  |  |  |  |  |"},
@@ -84,6 +91,17 @@ namespace BankOcr.Test
 
             DataReader reader = new DataReader();
             string output = reader.ReadNumber(validOnlyTwo);
+
+            Assert.AreEqual(expected, output);
+        }
+
+        [TestMethod]
+        public void ValidateInput_OnlyThrees_Returns3x9()
+        {
+            string expected = "333333333";
+
+            DataReader reader = new DataReader();
+            string output = reader.ReadNumber(validOnlyThree);
 
             Assert.AreEqual(expected, output);
         }

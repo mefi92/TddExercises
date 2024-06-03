@@ -24,6 +24,13 @@ namespace BankOcr
             {"   "}
         };
 
+        private string[,] three = {
+            {" _ "},
+            {" _|"},
+            {" _|"},
+            {"   "}
+        };
+
         public string ReadNumber(string[,] text)
         {
             ValidateInput(text);
@@ -49,6 +56,11 @@ namespace BankOcr
             {
                 return "2";
             }
+            if (IsMatch(text, digit, three))
+            {
+                return "3";
+            }
+
             return "?";
 
         }
