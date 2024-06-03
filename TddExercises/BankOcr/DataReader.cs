@@ -1,15 +1,44 @@
 ﻿using System.Data;
+using System.Reflection.Metadata;
+using System.Text;
 
 namespace BankOcr
 {
     public class DataReader
-    {       
+    {
+        const int maxDigitNums = 9;
+        const int lengthOfDigit = 3;
+        const int numOfRows = 4;
+            
+        private readonly string[,] one = {
+            {"   "},
+            {"  |"},
+            {"  |"},
+            {"   "}
+        };
 
         public string ReadNumber(string[,] text)
         {
             ValidateInput(text);
 
-            return "111111111";
+            StringBuilder outputDigits = new StringBuilder();
+
+            for (int digit = 0; digit < maxDigitNums; digit++)
+            {
+                for (int row = 0; row < numOfRows; row++)
+                {
+                    int actDigit = digit * lengthOfDigit;
+                    if (text[row, 0].Substring(actDigit, lengthOfDigit) != one[row, 0])
+                    {
+                        break;
+                    }
+
+                }
+
+                outputDigits.Append('1');
+            }
+
+            return outputDigits.ToString();
         }
 
 

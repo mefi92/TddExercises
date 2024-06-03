@@ -3,6 +3,13 @@ namespace BankOcr.Test
     [TestClass]
     public class DataReaderTest
     {
+        public string[,] validOnlyOne = {
+            {"                           "},
+            {"  |  |  |  |  |  |  |  |  |"},
+            {"  |  |  |  |  |  |  |  |  |"},
+            {"                           "}
+        };
+
         public string[,] threeArrays = {            
             {"  |  |  |  |  |  |  |  |  |"},
             {"  |  |  |  |  |  |  |  |  |"},
@@ -29,14 +36,7 @@ namespace BankOcr.Test
             {"  |  |  |  |  |  |  |  |  |"},
             {"  |  |  |  |  |  |  |  |  |"},
             {"                           "}
-        };
-
-        public string[,] onlyOne = {
-            {"                           "},
-            {"  |  |  |  |  |  |  |  |  |"},
-            {"  |  |  |  |  |  |  |  |  |"},
-            {"                           "}
-        };
+        };        
 
         public string[,] invalidCharacter = {
             {"                           "},
@@ -60,12 +60,23 @@ namespace BankOcr.Test
         };
 
         [TestMethod]
-        public void ValidateInput_ValidInput()
+        public void ValidateInput_OnlyOnes_Returns1x9()
         {
             string expected = "111111111";
 
             DataReader reader = new DataReader();
-            string output = reader.ReadNumber(onlyOne);
+            string output = reader.ReadNumber(validOnlyOne);
+
+            Assert.AreEqual(expected, output);
+        }
+
+        [TestMethod]
+        public void ValidateInput_OnlyTwos_Returns2x9()
+        {
+            string expected = "222222222";
+
+            DataReader reader = new DataReader();
+            string output = reader.ReadNumber(validOnlyOne);
 
             Assert.AreEqual(expected, output);
         }
@@ -150,7 +161,7 @@ namespace BankOcr.Test
 
         // x valid-e a beadott tömb 27 oszlop 4 sor
         // x megfelelõ karakterek vannak e benne: | _ space
-        // 4. sor üres
+        // x 4. sor üres
         // 9db 1-es felismerése
         // minden karakter x9 felismerése
 
