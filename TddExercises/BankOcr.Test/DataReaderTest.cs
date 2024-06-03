@@ -31,6 +31,48 @@ namespace BankOcr.Test
             {"                           "}
         };
 
+        public string[,] validOnlyFives = {
+            {" _  _  _  _  _  _  _  _  _ "},
+            {"|_ |_ |_ |_ |_ |_ |_ |_ |_ "},
+            {" _| _| _| _| _| _| _| _| _|"},
+            {"                           "}
+        };
+
+        public string[,] validOnlySixes = {
+            {" _  _  _  _  _  _  _  _  _ "},
+            {"|_ |_ |_ |_ |_ |_ |_ |_ |_ "},
+            {"|_||_||_||_||_||_||_||_||_|"},
+            {"                           "}
+        };
+
+        public string[,] validOnlySevens = {
+            {" _  _  _  _  _  _  _  _  _ "},
+            {"  |  |  |  |  |  |  |  |  |"},
+            {"  |  |  |  |  |  |  |  |  |"},
+            {"                           "}
+        };
+
+        public string[,] validOnlyEights = {
+            {" _  _  _  _  _  _  _  _  _ "},
+            {"|_||_||_||_||_||_||_||_||_|"},
+            {"|_||_||_||_||_||_||_||_||_|"},
+            {"                           "}
+        };
+
+        public string[,] validOnlyNines = {
+            {" _  _  _  _  _  _  _  _  _ "},
+            {"|_||_||_||_||_||_||_||_||_|"},
+            {" _| _| _| _| _| _| _| _| _|"},
+            {"                           "}
+        };
+
+        public string[,] validOneToNine = {
+            {"    _  _     _  _  _  _  _ "},
+            {"  | _| _||_||_ |_   ||_||_|"},
+            {"  ||_  _|  | _||_|  ||_| _|"},
+            {"                           "}
+        };
+
         public string[,] threeRowsInput = {            
             {"  |  |  |  |  |  |  |  |  |"},
             {"  |  |  |  |  |  |  |  |  |"},
@@ -73,11 +115,11 @@ namespace BankOcr.Test
             {"  |                        "}
         };
 
-        public string[,] onetwo = {
-            {"    _  _ "},
-            {"  | _| _|"},
-            {"  ||_  _|"},
-            {"         "}
+        public string[,] oneTwoThreeUnknown = {
+            {"    _  _                   "},
+            {"  | _| _|                  "},
+            {"  ||_  _|                  "},
+            {"                           "}
         };
 
         [TestMethod]
@@ -120,6 +162,83 @@ namespace BankOcr.Test
 
             DataReader reader = new DataReader();
             string output = reader.ReadNumber(validOnlyFours);
+
+            Assert.AreEqual(expected, output);
+        }
+
+        [TestMethod]
+        public void ValidateInput_OnlyFives_Returns5x9()
+        {
+            string expected = "555555555";
+
+            DataReader reader = new DataReader();
+            string output = reader.ReadNumber(validOnlyFives);
+
+            Assert.AreEqual(expected, output);
+        }
+
+        [TestMethod]
+        public void ValidateInput_OnlySixes_Returns6x9()
+        {
+            string expected = "666666666";
+
+            DataReader reader = new DataReader();
+            string output = reader.ReadNumber(validOnlySixes);
+
+            Assert.AreEqual(expected, output);
+        }
+
+        [TestMethod]
+        public void ValidateInput_OnlySevens_Returns7x9()
+        {
+            string expected = "777777777";
+
+            DataReader reader = new DataReader();
+            string output = reader.ReadNumber(validOnlySevens);
+
+            Assert.AreEqual(expected, output);
+        }
+
+        [TestMethod]
+        public void ValidateInput_OnlyEights_Returns8x9()
+        {
+            string expected = "888888888";
+
+            DataReader reader = new DataReader();
+            string output = reader.ReadNumber(validOnlyEights);
+
+            Assert.AreEqual(expected, output);
+        }
+
+        [TestMethod]
+        public void ValidateInput_OnlyNines_Returns9x9()
+        {
+            string expected = "999999999";
+
+            DataReader reader = new DataReader();
+            string output = reader.ReadNumber(validOnlyNines);
+
+            Assert.AreEqual(expected, output);
+        }
+
+        [TestMethod]
+        public void ValidateInput_OneToNince_Returns123456789()
+        {
+            string expected = "123456789";
+
+            DataReader reader = new DataReader();
+            string output = reader.ReadNumber(validOneToNine);
+
+            Assert.AreEqual(expected, output);
+        }
+
+        [TestMethod]
+        public void ValidateInput_OneTwoThreeUnknown_Returns123Questionmarks()
+        {
+            string expected = "123??????";
+
+            DataReader reader = new DataReader();
+            string output = reader.ReadNumber(oneTwoThreeUnknown);
 
             Assert.AreEqual(expected, output);
         }
