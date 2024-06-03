@@ -3,6 +3,20 @@ namespace BankOcr.Test
     [TestClass]
     public class DataReaderTest
     {
+        public string[,] threeArrays = {            
+            {"  |  |  |  |  |  |  |  |  |"},
+            {"  |  |  |  |  |  |  |  |  |"},
+            {"                           "}
+        };
+
+        public string[,] fiveArrays = {
+            {"                           "},
+            {"  |  |  |  |  |  |  |  |  |"},
+            {"  |  |  |  |  |  |  |  |  |"},
+            {"                           "},
+            {"                           "}
+        };
+
         public string[,] shortArray = {
             {"                          "},
             {"  |  |  |  |  |  |  |  |  |"},
@@ -20,6 +34,13 @@ namespace BankOcr.Test
         public string[,] onlyOne = {
             {"                           "},
             {"  |  |  |  |  |  |  |  |  |"},
+            {"  |  |  |  |  |  |  |  |  |"},
+            {"                           "}
+        };
+
+        public string[,] invalidCharacter = {
+            {"                           "},
+            {"  |  |  |  a  |  |  |  |  |"},
             {"  |  |  |  |  |  |  |  |  |"},
             {"                           "}
         };
@@ -65,6 +86,30 @@ namespace BankOcr.Test
         {
             DataReader reader = new DataReader();
             reader.ReadNumber(longArray);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ValidateInput_ThreeLines_ReturnsException()
+        {
+            DataReader reader = new DataReader();
+            reader.ReadNumber(threeArrays);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ValidateInput_FiveLines_ReturnsException()
+        {
+            DataReader reader = new DataReader();
+            reader.ReadNumber(fiveArrays);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ValidateInput_InvalidCharacter_ReturnsException()
+        {
+            DataReader reader = new DataReader();
+            reader.ReadNumber(invalidCharacter);
         }
 
 
