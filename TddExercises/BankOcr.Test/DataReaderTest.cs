@@ -3,11 +3,25 @@ namespace BankOcr.Test
     [TestClass]
     public class DataReaderTest
     {
-        public string[,] one = {
-            {"   "},
-            {"  |"},
-            {"  |"},
-            {"   "}
+        public string[,] shortArray = {
+            {"                          "},
+            {"  |  |  |  |  |  |  |  |  |"},
+            {"  |  |  |  |  |  |  |  |  |"},
+            {"                           "}
+        };
+
+        public string[,] longArray = {
+            {"                            "},
+            {"  |  |  |  |  |  |  |  |  |"},
+            {"  |  |  |  |  |  |  |  |  |"},
+            {"                           "}
+        };
+
+        public string[,] onlyOne = {
+            {"                           "},
+            {"  |  |  |  |  |  |  |  |  |"},
+            {"  |  |  |  |  |  |  |  |  |"},
+            {"                           "}
         };
 
         public string[,] onetwo = {
@@ -18,19 +32,68 @@ namespace BankOcr.Test
         };
 
         [TestMethod]
-        public void ShouldIdentifyOne()
+        public void ValidateInput_ValidInput()
+        {
+            string expected = "111111111";
+
+            DataReader reader = new DataReader();
+            string output = reader.ReadNumber(onlyOne);
+
+            Assert.AreEqual(expected, output);
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void NullInput_ReturnsException()
         {
             DataReader reader = new DataReader();
-
-            Assert.AreEqual(1, reader.ReadNumber(one));
+            reader.ReadNumber(null);
         }
 
         [TestMethod]
-        public void ShouldIdentifyOneTwo()
+        [ExpectedException(typeof(ArgumentException))]
+        public void ValidateInput_ShortInput_ReturnsException()
         {
             DataReader reader = new DataReader();
-
-            Assert.AreEqual(12, reader.ReadNumber(onetwo));
+            reader.ReadNumber(shortArray);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ValidateInput_LongInput_ReturnsException()
+        {
+            DataReader reader = new DataReader();
+            reader.ReadNumber(longArray);
+        }
+
+
+
+
+        //[TestMethod]
+        //public void ShouldIdentifyOne()
+        //{
+        //    DataReader reader = new DataReader();
+
+        //    Assert.AreEqual(1, reader.ReadNumber(one));
+        //}
+
+        //[TestMethod]
+        //public void ShouldIdentifyOneTwo()
+        //{
+        //    DataReader reader = new DataReader();
+
+        //    Assert.AreEqual(12, reader.ReadNumber(onetwo));
+        //}
+
+
+
+        // valid-e a beadott tömb 27 oszlop 4 sor
+        // megfelelõ karakterek vannak e benne: | _ space
+        // 4. sor üres
+        // 9db 1-es felismerése
+        // minden karakter x9 felismerése
+
+
     }
 }

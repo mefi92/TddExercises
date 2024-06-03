@@ -42,6 +42,15 @@ namespace PrimeNumberDetection.Test
         }
 
         [TestMethod]
+        public void IsItDividibleByTwo()
+        {
+            for (int i = 4;  i < 100; i+=2) 
+            {
+                Assert.IsFalse(primeNumberDetector.IsItPrime(i));
+            }            
+        }
+
+        [TestMethod]
         public void IsItPrime_7_RetrunsTrue()
         {
             Assert.IsTrue(primeNumberDetector.IsItPrime(7));
