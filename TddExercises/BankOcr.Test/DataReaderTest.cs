@@ -130,6 +130,13 @@ namespace BankOcr.Test
             {"                           "}
         };
 
+        public string[,] emptyInput = {
+            {"                           "},
+            {"                           "},
+            {"                           "},
+            {"                           "}
+        };
+
         [TestMethod]
         public void ValidateInput_OnlyOnes_Returns1x9()
         {
@@ -247,6 +254,17 @@ namespace BankOcr.Test
 
             DataReader reader = new DataReader();
             string output = reader.ReadNumber(oneTwoThreeUnknown);
+
+            Assert.AreEqual(expected, output);
+        }
+
+        [TestMethod]
+        public void ValidateInput_EmptyInput_ReturnsQuestionmarks()
+        {
+            string expected = "?????????";
+
+            DataReader reader = new DataReader();
+            string output = reader.ReadNumber(emptyInput);
 
             Assert.AreEqual(expected, output);
         }
