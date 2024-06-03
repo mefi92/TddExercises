@@ -115,7 +115,7 @@ namespace BankOcr
 
         private static void ValidateArrayDimensionsInput(string[,] text)
         {
-            if (text.GetLength(0) != 4 && text.GetLength(1) != 0)
+            if (text.GetLength(0) != 4 && text.GetLength(1) != 0 || text.Length == 0)
             {
                 throw new ArgumentException("The input array must have 4 rows.");
             }

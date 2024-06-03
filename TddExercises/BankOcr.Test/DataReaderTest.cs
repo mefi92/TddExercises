@@ -137,6 +137,9 @@ namespace BankOcr.Test
             {"                           "}
         };
 
+        public string[,] invalidEmptyArray = {
+        };
+
         [TestMethod]
         public void ValidateInput_OnlyOnes_Returns1x9()
         {
@@ -146,7 +149,7 @@ namespace BankOcr.Test
             string output = reader.ReadNumber(validOnlyOnes);
 
             Assert.AreEqual(expected, output);
-        }
+        }        
 
         [TestMethod]
         public void ValidateInput_OnlyTwos_Returns2x9()
@@ -325,33 +328,19 @@ namespace BankOcr.Test
             reader.ReadNumber(forthRowNotEmpty);
         }
 
-
-
-
-        //[TestMethod]
-        //public void ShouldIdentifyOne()
-        //{
-        //    DataReader reader = new DataReader();
-
-        //    Assert.AreEqual(1, reader.ReadNumber(one));
-        //}
-
-        //[TestMethod]
-        //public void ShouldIdentifyOneTwo()
-        //{
-        //    DataReader reader = new DataReader();
-
-        //    Assert.AreEqual(12, reader.ReadNumber(onetwo));
-        //}
-
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ValidateInput_InvalidEmptyArray_ReturnsException()
+        { 
+            DataReader reader = new DataReader();
+            reader.ReadNumber(invalidEmptyArray);
+        }
 
 
         // x valid-e a beadott tömb 27 oszlop 4 sor
         // x megfelelõ karakterek vannak e benne: | _ space
         // x 4. sor üres
-        // 9db 1-es felismerése
-        // minden karakter x9 felismerése
-
-
+        // x 9db 1-es felismerése
+        // x minden karakter x9 felismerése
     }
 }
