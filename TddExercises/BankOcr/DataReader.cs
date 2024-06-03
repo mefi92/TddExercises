@@ -28,6 +28,11 @@ namespace BankOcr
         {
             ValidateInput(text);
 
+            return GetDigitsString(text);
+        }
+
+        private string GetDigitsString(string[,] text)
+        {
             StringBuilder outputDigits = new StringBuilder();
 
             for (int digit = 0; digit < maxDigitNums; digit++)

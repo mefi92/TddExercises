@@ -3,6 +3,14 @@ namespace BankOcr.Test
     [TestClass]
     public class DataReaderTest
     {
+
+        public string[,] oneInput = {
+            {"   "},
+            {"  |"},
+            {"  |"},
+            {"   "}            
+        };
+
         public string[,] validOnlyOnes = {
             {"                           "},
             {"  |  |  |  |  |  |  |  |  |"},
