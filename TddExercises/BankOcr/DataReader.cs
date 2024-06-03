@@ -9,26 +9,19 @@ namespace BankOcr
         const int maxDigitNums = 9;
         const int lengthOfDigit = 3;
         const int numOfRows = 4;
-            
-        private readonly string[,] one = {
-            {"   "},
-            {"  |"},
-            {"  |"},
-            {"   "}
-        };
 
-        private readonly string[,] two = {
-            {" _ "},
-            {" _|"},
-            {"|_ "},
-            {"   "}
-        };
-
-        private string[,] three = {
-            {" _ "},
-            {" _|"},
-            {" _|"},
-            {"   "}
+        private readonly Dictionary<string, string[,]> digitPatterns = new Dictionary<string, string[,]>
+        {
+            { "0", new string[,] { { " _ " }, { "| |" }, { "|_|" }, { "   " } } },
+            { "1", new string[,] { { "   " }, { "  |" }, { "  |" }, { "   " } } },
+            { "2", new string[,] { { " _ " }, { " _|" }, { "|_ " }, { "   " } } },
+            { "3", new string[,] { { " _ " }, { " _|" }, { " _|" }, { "   " } } },
+            { "4", new string[,] { { "   " }, { "|_|" }, { "  |" }, { "   " } } },
+            { "5", new string[,] { { " _ " }, { "|_ " }, { " _|" }, { "   " } } },
+            { "6", new string[,] { { " _ " }, { "|_ " }, { "|_|" }, { "   " } } },
+            { "7", new string[,] { { " _ " }, { "  |" }, { "  |" }, { "   " } } },
+            { "8", new string[,] { { " _ " }, { "|_|" }, { "|_|" }, { "   " } } },
+            { "9", new string[,] { { " _ " }, { "|_|" }, { " _|" }, { "   " } } },
         };
 
         public string ReadNumber(string[,] text)
@@ -39,28 +32,23 @@ namespace BankOcr
 
             for (int digit = 0; digit < maxDigitNums; digit++)
             {
-                string recognizedDigit = RecognizeDigit(text, outputDigits, digit);
+                string recognizedDigit = RecognizeDigit(text, digit);
                 outputDigits.Append(recognizedDigit);
             }
 
             return outputDigits.ToString();
         }
 
-        private string RecognizeDigit(string[,] text, StringBuilder outputDigits, int digit)
+        private string RecognizeDigit(string[,] text, int digit)
         {
-            if (IsMatch(text, digit, one))
+            foreach (var pattern in digitPatterns) 
             {
-                return "1";
-            }
-            if (IsMatch(text, digit, two))
-            {
-                return "2";
-            }
-            if (IsMatch(text, digit, three))
-            {
-                return "3";
-            }
+                if (IsMatch(text, digit, pattern.Value))
+                {
+                    return pattern.Key;
+                }
 
+            }              
             return "?";
 
         }
