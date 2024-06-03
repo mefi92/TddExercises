@@ -45,6 +45,13 @@ namespace BankOcr.Test
             {"                           "}
         };
 
+        public string[,] forthRowNotEmpty = {
+            {"                           "},
+            {"  |  |  |  |  |  |  |  |  |"},
+            {"  |  |  |  |  |  |  |  |  |"},
+            {"  |                        "}
+        };
+
         public string[,] onetwo = {
             {"    _  _ "},
             {"  | _| _|"},
@@ -112,6 +119,14 @@ namespace BankOcr.Test
             reader.ReadNumber(invalidCharacter);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ValidateInput_ForthRowNotEmtpy_ReturnsException()
+        {
+            DataReader reader = new DataReader();
+            reader.ReadNumber(forthRowNotEmpty);
+        }
+
 
 
 
@@ -133,8 +148,8 @@ namespace BankOcr.Test
 
 
 
-        // valid-e a beadott tömb 27 oszlop 4 sor
-        // megfelelõ karakterek vannak e benne: | _ space
+        // x valid-e a beadott tömb 27 oszlop 4 sor
+        // x megfelelõ karakterek vannak e benne: | _ space
         // 4. sor üres
         // 9db 1-es felismerése
         // minden karakter x9 felismerése

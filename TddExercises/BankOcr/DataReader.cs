@@ -1,8 +1,9 @@
-﻿namespace BankOcr
+﻿using System.Data;
+
+namespace BankOcr
 {
     public class DataReader
-    {
-        private static readonly char[] ValidChars = { ' ', '_', '|' };
+    {       
 
         public string ReadNumber(string[,] text)
         {
@@ -24,22 +25,30 @@
 
         private static void ValidateInputTextContent(string[,] text)
         {
-            foreach (var row in text)
+            char[] validCharsNormal = { ' ', '_', '|' };
+            char[] validCharForthLine = { ' ' };
+
+            for (int row=0; row<text.GetLength(0); row++)
             {
-                if (row.Length != 27)
+                string line = text[row, 0];
+
+                if (line.Length != 27)
                 {
                     throw new ArgumentException("Row must be 27 characters long.");
                 }
 
-                CheckInputCharacters(row);
+                char[] validChars = row == 3 ? validCharForthLine : validCharsNormal; 
+                CheckInputCharacters(line, validChars);
+
             }
+            
         }
 
-        private static void CheckInputCharacters(string row)
+        private static void CheckInputCharacters(string row, char[] validChars)
         {
             foreach (var ch in row)
             {
-                if (!ValidChars.Contains(ch))
+                if (!validChars.Contains(ch))
                 {
                     throw new ArgumentException("Text contians invalid character.");
                 }
@@ -58,7 +67,7 @@
         {
             if (text == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("Invalid Null input.");
             }
         }
     }
